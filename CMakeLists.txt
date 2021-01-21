@@ -1,7 +1,0 @@
-CMAKE_MINIMUM_REQUIRED(VERSION 3.0)
-PROJECT(ToDo)
-INCLUDE_DIRECTORIES(include)
-ADD_EXECUTABLE(app
-    src/main.cpp
-    src/app.cpp
-)
