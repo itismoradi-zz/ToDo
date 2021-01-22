@@ -21,6 +21,8 @@ class MainWindow : public QMainWindow
         void on_selectbt_clicked();
         void on_daybt_clicked();
 
+        void on_favbt_clicked();
+
 private:
         Ui::MainWindow * ui;
         QVector <QString> task;

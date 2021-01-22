@@ -93,6 +93,19 @@ void MainWindow::on_daybt_clicked()
 }
 
 
+void MainWindow::on_favbt_clicked()
+{
+    QString fulltext;
+        fulltext+="id      task\n";
+        for (int i=0;i<isFavorite.length();i++)
+        {
+            if(isFavorite[i] == true)
+                fulltext+=QString::number(id[i])+"   "+task[i]+'\n';
+        }
+        ui->textBrowser->setText(fulltext);
+}
+
+
 void MainWindow::on_weekbt_clicked()
 {
     QString fulltext;
