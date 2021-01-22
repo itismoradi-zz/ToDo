@@ -19,7 +19,9 @@ class MainWindow : public QMainWindow
         void on_monbt_clicked();
         void on_weekbt_clicked();
         void on_selectbt_clicked();
-    private:
+        void on_daybt_clicked();
+
+private:
         Ui::MainWindow * ui;
         QVector <QString> task;
         QVector <bool> isFavorite;
