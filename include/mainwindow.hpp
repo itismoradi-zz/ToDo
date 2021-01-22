@@ -20,6 +20,8 @@ private slots:
 
     void on_allbt_clicked();
 
+    void on_monbt_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
