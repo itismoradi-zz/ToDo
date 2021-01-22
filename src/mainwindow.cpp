@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "ui_mainwindow.h"
 #include "qmessagebox.h"
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -12,16 +13,21 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->comboBox->addItem("Week");
     ui->comboBox->addItem("Day");
 }
+
+
 QVector <QString> tasks;
 QVector <bool> fav;
 QVector <int> times;
 QVector <int> id;
 QVector <bool> iscomp;
 int s=100;
+
+
 MainWindow::~MainWindow()
 {
     delete ui;
 }
+
 
 void MainWindow::on_pushButton_clicked()
 {
@@ -62,6 +68,7 @@ void MainWindow::on_pushButton_clicked()
 
 }
 
+
 void MainWindow::on_allbt_clicked()
 {
     QString fulltext;
@@ -72,6 +79,7 @@ void MainWindow::on_allbt_clicked()
         }
         ui->textBrowser->setText(fulltext);
 }
+
 
 void MainWindow::on_monbt_clicked()
 {
