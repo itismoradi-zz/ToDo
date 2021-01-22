@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>420</width>
-    <height>500</height>
+    <height>460</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -247,8 +247,8 @@
    <widget class="QPushButton" name="selectbt">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>400</y>
+      <x>350</x>
+      <y>380</y>
       <width>51</width>
       <height>21</height>
      </rect>
@@ -260,8 +260,8 @@
    <widget class="QPushButton" name="tocompletebt">
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>460</y>
+      <x>320</x>
+      <y>420</y>
       <width>71</width>
       <height>23</height>
      </rect>
@@ -273,9 +273,9 @@
    <widget class="QPushButton" name="tofavbt">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>460</y>
-      <width>81</width>
+      <x>270</x>
+      <y>420</y>
+      <width>41</width>
       <height>23</height>
      </rect>
     </property>
@@ -287,8 +287,8 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>430</y>
-      <width>71</width>
+      <y>420</y>
+      <width>61</width>
       <height>23</height>
      </rect>
     </property>
@@ -299,9 +299,9 @@
    <widget class="QPushButton" name="todaybt">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>430</y>
-      <width>81</width>
+      <x>90</x>
+      <y>420</y>
+      <width>51</width>
       <height>23</height>
      </rect>
     </property>
@@ -312,9 +312,9 @@
    <widget class="QPushButton" name="toweekbt">
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>430</y>
-      <width>71</width>
+      <x>150</x>
+      <y>420</y>
+      <width>51</width>
       <height>23</height>
      </rect>
     </property>
@@ -325,9 +325,9 @@
    <widget class="QPushButton" name="tomonbt">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>460</y>
-      <width>71</width>
+      <x>210</x>
+      <y>420</y>
+      <width>51</width>
       <height>23</height>
      </rect>
     </property>
@@ -338,8 +338,8 @@
    <widget class="QLineEdit" name="lineEdit2">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>400</y>
+      <x>200</x>
+      <y>380</y>
       <width>137</width>
       <height>21</height>
      </rect>
@@ -361,8 +361,8 @@
    <widget class="QLabel" name="label_7">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>400</y>
+      <x>150</x>
+      <y>380</y>
       <width>47</width>
       <height>21</height>
      </rect>
