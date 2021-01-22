@@ -80,6 +80,19 @@ void MainWindow::on_monbt_clicked()
 }
 
 
+void MainWindow::on_weekbt_clicked()
+{
+    QString fulltext;
+        fulltext+="id      task\n";
+        for (int i=0;i<times.length();i++)
+        {
+            if(times[i]==2)
+                fulltext+=QString::number(id[i])+"   "+task[i]+'\n';
+        }
+        ui->textBrowser->setText(fulltext);
+}
+
+
 void MainWindow::on_selectbt_clicked()
 {
     QString s = ui->lineEdit2->text();
@@ -122,3 +135,5 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+
