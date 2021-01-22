@@ -61,3 +61,14 @@ void MainWindow::on_pushButton_clicked()
     }
 
 }
+
+void MainWindow::on_allbt_clicked()
+{
+    QString fulltext;
+        fulltext+="id      tasks\n";
+        for(int i=0;i<tasks.length();i++)
+        {
+            fulltext+=QString::number(id[i])+"   "+tasks[i]+'\n';
+        }
+        ui->textBrowser->setText(fulltext);
+}
