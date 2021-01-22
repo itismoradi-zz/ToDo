@@ -20,7 +20,13 @@ class MainWindow : public QMainWindow
         void on_weekbt_clicked();
         void on_selectbt_clicked();
     private:
-        Ui::MainWindow *ui;
+        Ui::MainWindow * ui;
+        QVector <QString> task;
+        QVector <bool> isFavorite;
+        QVector <int> times;
+        QVector <int> id;
+        QVector <bool> isComplete;
+        int firstID;
 };
 
 #endif

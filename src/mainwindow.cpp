@@ -5,7 +5,8 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    firstID(1000)
 {
     ui->setupUi(this);
     ui->comboBox->addItem("No Time");
@@ -14,37 +15,22 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->comboBox->addItem("Day");
 }
 
-
-QVector <QString> tasks;
-QVector <bool> fav;
-QVector <int> times;
-QVector <int> id;
-QVector <bool> iscomp;
-int s=100;
-
-
-MainWindow::~MainWindow()
-{
-    delete ui;
-}
-
-
 void MainWindow::on_pushButton_clicked()
 {
     QString input = ui->inputtask->text();
     if(input.length()!=0)
     {
-        tasks.prepend(input);
-        iscomp.prepend(false);
-        id.prepend(s);
-        s++;
+        task.prepend(input);
+        isComplete.prepend(false);
+        id.prepend(firstID);
+        firstID++;
         if(ui->checkBox->isChecked()==true)
         {
-            fav.prepend(true);
+            isFavorite.prepend(true);
         }
         else
         {
-            fav.prepend(false);
+            isFavorite.prepend(false);
         }
         if(ui->comboBox->currentText()=="No Time")
             times.prepend(0);
@@ -72,10 +58,10 @@ void MainWindow::on_pushButton_clicked()
 void MainWindow::on_allbt_clicked()
 {
     QString fulltext;
-        fulltext+="id      tasks\n";
-        for(int i=0;i<tasks.length();i++)
+        fulltext+="id      task\n";
+        for(int i=0;i<task.length();i++)
         {
-            fulltext+=QString::number(id[i])+"   "+tasks[i]+'\n';
+            fulltext+=QString::number(id[i])+"   "+task[i]+'\n';
         }
         ui->textBrowser->setText(fulltext);
 }
@@ -84,11 +70,11 @@ void MainWindow::on_allbt_clicked()
 void MainWindow::on_monbt_clicked()
 {
     QString fulltext;
-        fulltext+="id      tasks\n";
+        fulltext+="id      task\n";
         for (int i=0;i<times.length();i++)
         {
             if(times[i]==1)
-                fulltext+=QString::number(id[i])+"   "+tasks[i]+'\n';
+                fulltext+=QString::number(id[i])+"   "+task[i]+'\n';
         }
         ui->textBrowser->setText(fulltext);
 }
@@ -109,9 +95,9 @@ void MainWindow::on_selectbt_clicked()
                 msgerr.exec();
             }
         }
-        if(fav[index]==true)
+        if(isFavorite[index]==true)
             ui->tofavbt->setEnabled(false);
-        if(fav[index]==false)
+        if(isFavorite[index]==false)
             ui->tofavbt->setEnabled(true);
         if(times[index]==1)
             ui->tomonbt->setEnabled(false);
@@ -125,8 +111,14 @@ void MainWindow::on_selectbt_clicked()
             ui->todaybt->setEnabled(false);
         if(times[index]!=3)
             ui->todaybt->setEnabled(true);
-        if(iscomp[index]==true)
+        if(isComplete[index]==true)
             ui->tocompletebt->setEnabled(false);
-        if(iscomp[index]==false)
+        if(isComplete[index]==false)
             ui->tocompletebt->setEnabled(true);
+}
+
+
+MainWindow::~MainWindow()
+{
+    delete ui;
 }
