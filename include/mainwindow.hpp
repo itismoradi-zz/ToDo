@@ -23,6 +23,8 @@ class MainWindow : public QMainWindow
 
         void on_favbt_clicked();
 
+        void on_compbt_clicked();
+
 private:
         Ui::MainWindow * ui;
         QVector <QString> task;

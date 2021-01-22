@@ -105,6 +105,18 @@ void MainWindow::on_favbt_clicked()
         ui->textBrowser->setText(fulltext);
 }
 
+void MainWindow::on_compbt_clicked()
+{
+    QString fulltext;
+        fulltext+="id      task\n";
+        for (int i=0;i<isComplete.length();i++)
+        {
+            if(isComplete[i] == true)
+                fulltext+=QString::number(id[i])+"   "+task[i]+'\n';
+        }
+        ui->textBrowser->setText(fulltext);
+}
+
 
 void MainWindow::on_weekbt_clicked()
 {
