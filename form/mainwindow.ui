@@ -177,7 +177,7 @@
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QLineEdit" name="lineEdit_2"/>
+      <widget class="QLineEdit" name="lineEdit2"/>
      </item>
      <item>
       <widget class="QPushButton" name="selectbt">

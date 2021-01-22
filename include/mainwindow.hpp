@@ -22,6 +22,10 @@ private slots:
 
     void on_monbt_clicked();
 
+    void on_weekbt_clicked();
+
+    void on_selectbt_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

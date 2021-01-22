@@ -84,3 +84,41 @@ void MainWindow::on_monbt_clicked()
         }
         ui->textBrowser->setText(fulltext);
 }
+
+
+void MainWindow::on_selectbt_clicked()
+{
+    QString s = ui->lineEdit2->text();
+        int newid = s.toInt();
+        int index;
+        for(int i=0;i<id.length();i++)
+        {
+            if(id[i]==newid)
+            {
+                index=i;
+                QMessageBox msgerr;
+                msgerr.setText("task selected");
+                msgerr.exec();
+            }
+        }
+        if(fav[index]==true)
+            ui->tofavbt->setEnabled(false);
+        if(fav[index]==false)
+            ui->tofavbt->setEnabled(true);
+        if(times[index]==1)
+            ui->tomonbt->setEnabled(false);
+        if(times[index]!=1)
+            ui->tomonbt->setEnabled(true);
+        if(times[index]==2)
+            ui->toweekbt->setEnabled(false);
+        if(times[index]!=2)
+            ui->toweekbt->setEnabled(true);
+        if(times[index]==3)
+            ui->todaybt->setEnabled(false);
+        if(times[index]!=3)
+            ui->todaybt->setEnabled(true);
+        if(iscomp[index]==true)
+            ui->tocompletebt->setEnabled(false);
+        if(iscomp[index]==false)
+            ui->tocompletebt->setEnabled(true);
+}
