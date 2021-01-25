@@ -193,7 +193,7 @@ void MainWindow::on_Removebt_clicked()
 {
     QString s = ui->lineEdit2->text();
     int newid = s.toInt();      //convert inputed string to integer
-    int index;
+    int index = NOTFOUND;
 
     for(int i=0;i<id.length();i++)
     {
@@ -203,25 +203,34 @@ void MainWindow::on_Removebt_clicked()
         }
     }
 
-    //erase function to remove task details
-    task.erase(task.begin()+index);
-    isComplete.erase(isComplete.begin()+index);
-    isFavorite.erase(isFavorite.begin()+index);
-    times.erase(times.begin()+index);
-    id.erase(id.begin()+index);
+    if(index == NOTFOUND)
+    {
+        QMessageBox msgerr;
+        msgerr.setText("not found");
+        msgerr.exec();
+    }
+    else
+    {
+        //erase function to remove task details
+        task.erase(task.begin()+index);
+        isComplete.erase(isComplete.begin()+index);
+        isFavorite.erase(isFavorite.begin()+index);
+        times.erase(times.begin()+index);
+        id.erase(id.begin()+index);
 
-    firstID--;
+        firstID--;
 
-    QMessageBox msgerr;
-    msgerr.setText("task removed");
-    msgerr.exec();
+        QMessageBox msgerr;
+        msgerr.setText("task removed");
+        msgerr.exec();
+    }
 }
 
 void MainWindow::on_todaybt_clicked()
 {
     QString s = ui->lineEdit2->text();
     int newid = s.toInt();      //convert inputed string to integer
-    int index;
+    int index = NOTFOUND;
     for(int i=0;i<id.length();i++)
     {
         if(id[i]==newid)
@@ -229,24 +238,115 @@ void MainWindow::on_todaybt_clicked()
             index=i;
         }
     }
+
+    if(index == NOTFOUND)
+    {
+        QMessageBox msgerr;
+        msgerr.setText("not found");
+        msgerr.exec();
+    }
+    else
+    {
+        times.at(index) = 3;
+    }
 }
 
 void MainWindow::on_toweekbt_clicked()
 {
+    QString s = ui->lineEdit2->text();
+    int newid = s.toInt();      //convert inputed string to integer
+    int index = NOTFOUND;
+    for(int i=0;i<id.length();i++)
+    {
+        if(id[i]==newid)
+        {
+            index=i;
+        }
+    }
 
+    if(index == NOTFOUND)
+    {
+        QMessageBox msgerr;
+        msgerr.setText("not found");
+        msgerr.exec();
+    }
+    else
+    {
+        times.at(index) = 2;
+    }
 }
 
 void MainWindow::on_tomonbt_clicked()
 {
+    QString s = ui->lineEdit2->text();
+    int newid = s.toInt();      //convert inputed string to integer
+    int index = NOTFOUND;
+    for(int i=0;i<id.length();i++)
+    {
+        if(id[i]==newid)
+        {
+            index=i;
+        }
+    }
 
+    if(index == NOTFOUND)
+    {
+        QMessageBox msgerr;
+        msgerr.setText("not found");
+        msgerr.exec();
+    }
+    else
+    {
+        times.at(index) = 1;
+    }
 }
 
 void MainWindow::on_tofavbt_clicked()
 {
+    QString s = ui->lineEdit2->text();
+    int newid = s.toInt();      //convert inputed string to integer
+    int index = NOTFOUND;
+    for(int i=0;i<id.length();i++)
+    {
+        if(id[i]==newid)
+        {
+            index=i;
+        }
+    }
 
+    if(index == NOTFOUND)
+    {
+        QMessageBox msgerr;
+        msgerr.setText("not found");
+        msgerr.exec();
+    }
+    else
+    {
+        isFavorite.at(index) = true;
+    }
 }
 
 void MainWindow::on_tocompletebt_clicked()
 {
+    QString s = ui->lineEdit2->text();
+    int newid = s.toInt();      //convert inputed string to integer
+    int index = NOTFOUND;
+    for(int i=0;i<id.length();i++)
+    {
+        if(id[i]==newid)
+        {
+            index=i;
+        }
+    }
 
+    if(index == NOTFOUND)
+    {
+        QMessageBox msgerr;
+        msgerr.setText("not found");
+        msgerr.exec();
+    }
+    else
+    {
+        isComplete.at(index) = true;
+    }
 }
