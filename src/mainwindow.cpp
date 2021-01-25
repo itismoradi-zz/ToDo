@@ -247,7 +247,10 @@ void MainWindow::on_todaybt_clicked()
     }
     else
     {
-        times.at(index) = 3;
+        times[index] = 3;
+        QMessageBox msgerr;
+        msgerr.setText("task time is day");
+        msgerr.exec();
     }
 }
 
@@ -272,7 +275,10 @@ void MainWindow::on_toweekbt_clicked()
     }
     else
     {
-        times.at(index) = 2;
+        times[index] = 2;
+        QMessageBox msgerr;
+        msgerr.setText("task time is week");
+        msgerr.exec();
     }
 }
 
@@ -297,7 +303,10 @@ void MainWindow::on_tomonbt_clicked()
     }
     else
     {
-        times.at(index) = 1;
+        times[index] = 1;
+        QMessageBox msgerr;
+        msgerr.setText("task time is month");
+        msgerr.exec();
     }
 }
 
@@ -322,7 +331,10 @@ void MainWindow::on_tofavbt_clicked()
     }
     else
     {
-        isFavorite.at(index) = true;
+        isFavorite[index] = true;
+        QMessageBox msgerr;
+        msgerr.setText("task is favorite");
+        msgerr.exec();
     }
 }
 
@@ -347,6 +359,9 @@ void MainWindow::on_tocompletebt_clicked()
     }
     else
     {
-        isComplete.at(index) = true;
+        isComplete[index] = true;
+        QMessageBox msgerr;
+        msgerr.setText("task is compeleted");
+        msgerr.exec();
     }
 }
