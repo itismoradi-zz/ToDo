@@ -15,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->comboBox->addItem("Day");
 }
 
+
 void MainWindow::on_pushButton_clicked()
 {
     QString input = ui->inputtask->text();
@@ -105,6 +106,7 @@ void MainWindow::on_favbt_clicked()
         ui->textBrowser->setText(fulltext);
 }
 
+
 void MainWindow::on_compbt_clicked()
 {
     QString fulltext;
@@ -146,6 +148,8 @@ void MainWindow::on_selectbt_clicked()
                 msgerr.exec();
             }
         }
+
+        //disable extra buttons for selected task
         if(isFavorite[index]==true)
             ui->tofavbt->setEnabled(false);
         if(isFavorite[index]==false)
@@ -172,4 +176,34 @@ void MainWindow::on_selectbt_clicked()
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::on_Removebt_clicked()
+{
+
+}
+
+void MainWindow::on_todaybt_clicked()
+{
+
+}
+
+void MainWindow::on_toweekbt_clicked()
+{
+
+}
+
+void MainWindow::on_tomonbt_clicked()
+{
+
+}
+
+void MainWindow::on_tofavbt_clicked()
+{
+
+}
+
+void MainWindow::on_tocompletebt_clicked()
+{
+
 }
