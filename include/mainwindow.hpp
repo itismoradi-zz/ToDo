@@ -20,24 +20,15 @@ class MainWindow : public QMainWindow
         void on_weekbt_clicked();
         void on_selectbt_clicked();
         void on_daybt_clicked();
-
         void on_favbt_clicked();
-
         void on_compbt_clicked();
-
         void on_Removebt_clicked();
-
         void on_todaybt_clicked();
-
         void on_toweekbt_clicked();
-
         void on_tomonbt_clicked();
-
         void on_tofavbt_clicked();
-
         void on_tocompletebt_clicked();
-
-private:
+    private:
         Ui::MainWindow * ui;
         QVector <QString> task;
         QVector <bool> isFavorite;

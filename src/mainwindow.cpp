@@ -3,6 +3,8 @@
 #include "ui_mainwindow.h"
 #include "qmessagebox.h"
 
+#define NOTFOUND -1
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
@@ -136,19 +138,27 @@ void MainWindow::on_weekbt_clicked()
 void MainWindow::on_selectbt_clicked()
 {
     QString s = ui->lineEdit2->text();
-        int newid = s.toInt();
-        int index;
-        for(int i=0;i<id.length();i++)
+    int newid = s.toInt();
+    int index = NOTFOUND;
+    for(int i=0;i<id.length();i++)
+    {
+        if(id[i]==newid)
         {
-            if(id[i]==newid)
-            {
-                index=i;
-                QMessageBox msgerr;
-                msgerr.setText("task selected");
-                msgerr.exec();
-            }
+            index=i;
+            QMessageBox msgerr;
+            msgerr.setText("task selected");
+            msgerr.exec();
         }
+    }
 
+    if(index == NOTFOUND)
+    {
+        QMessageBox msgerr;
+        msgerr.setText("not found");
+        msgerr.exec();
+    }
+    else
+    {
         //disable extra buttons for selected task
         if(isFavorite[index]==true)
             ui->tofavbt->setEnabled(false);
@@ -170,6 +180,7 @@ void MainWindow::on_selectbt_clicked()
             ui->tocompletebt->setEnabled(false);
         if(isComplete[index]==false)
             ui->tocompletebt->setEnabled(true);
+    }
 }
 
 
@@ -180,12 +191,44 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_Removebt_clicked()
 {
+    QString s = ui->lineEdit2->text();
+    int newid = s.toInt();      //convert inputed string to integer
+    int index;
 
+    for(int i=0;i<id.length();i++)
+    {
+        if(id[i]==newid)
+        {
+            index=i;
+        }
+    }
+
+    //erase function to remove task details
+    task.erase(task.begin()+index);
+    isComplete.erase(isComplete.begin()+index);
+    isFavorite.erase(isFavorite.begin()+index);
+    times.erase(times.begin()+index);
+    id.erase(id.begin()+index);
+
+    firstID--;
+
+    QMessageBox msgerr;
+    msgerr.setText("task removed");
+    msgerr.exec();
 }
 
 void MainWindow::on_todaybt_clicked()
 {
-
+    QString s = ui->lineEdit2->text();
+    int newid = s.toInt();      //convert inputed string to integer
+    int index;
+    for(int i=0;i<id.length();i++)
+    {
+        if(id[i]==newid)
+        {
+            index=i;
+        }
+    }
 }
 
 void MainWindow::on_toweekbt_clicked()
