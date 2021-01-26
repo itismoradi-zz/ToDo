@@ -47,6 +47,8 @@ void MainWindow::on_pushButton_clicked()
         msg.setText("task added");
         msg.exec();
         ui->inputtask->setText("");
+
+        on_allbt_clicked();
     }
     else
     {
