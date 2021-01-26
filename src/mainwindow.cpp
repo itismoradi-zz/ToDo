@@ -15,6 +15,55 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->comboBox->addItem("Mon");
     ui->comboBox->addItem("Week");
     ui->comboBox->addItem("Day");
+    
+    ui->setupUi(this);
+    QFile file("E:/avengers/todoqt/data.txt");//input your file path
+    file.open(QIODevice::ReadOnly | QIODevice::Text);
+    QTextStream in(&file);
+    while(!in.atEnd())
+    {
+        QString str_Line = in.readLine();
+        QStringList all=str_Line.split(";");
+        QString ntask=all[0];
+        QString nfav=all[1];
+        QString ntimes=all[2];
+        QString nid=all[4];
+        QString niscomp=all[3];
+        tasks.prepend(ntask);
+        if(nfav=="1")
+            fav.prepend(true);
+        else
+            fav.prepend(false);
+        if(ntimes=="0")
+            times.prepend(0);
+        else if(ntimes=="1")
+            times.prepend(1);
+        else if(ntimes=="2")
+            times.prepend(2);
+        else if(ntimes=="3")
+            times.prepend(3);
+        id.prepend(nid.toInt());
+        if(niscomp=="1")
+            iscomp.prepend(true);
+        else
+            iscomp.prepend(false);
+    }
+    ui->comboBox->addItem("No Time");
+    ui->comboBox->addItem("Mon");
+    ui->comboBox->addItem("Week");
+    ui->comboBox->addItem("Day");
+    if(id.length()>0)
+    {
+       for(int i=0;i<id.length();i++)
+       {
+           if(id[i]>s)
+               s=id[i];
+       }
+       s++;
+
+    }
+
+
 }
 
 
@@ -187,7 +236,61 @@ void MainWindow::on_selectbt_clicked()
 
 
 MainWindow::~MainWindow()
-{
+{            
+        QFile file("E:/avengers/todoqt/data.txt");//input your file path
+        if(file.open(QIODevice::WriteOnly | QIODevice::Text))
+         {
+            QTextStream stream(&file);
+            for (int i=0;i<tasks.length();i++)
+            {
+                stream <<tasks[i];
+                stream<<";";
+                if(fav[i]==true)
+                {
+                    stream<<"1";
+                    stream<<";";
+                }
+                else
+                {
+                    stream<<"0";
+                    stream<<";";
+                }
+                if(times[i]==0)
+                {
+                    stream<<"0";
+                    stream<<";";
+                }
+                else if(times[i]==1)
+                {
+                    stream<<"1";
+                    stream<<";";
+                }
+                if(times[i]==2)
+                {
+                    stream<<"2";
+                    stream<<";";
+                }
+                if(times[i]==3)
+                {
+                    stream<<"3";
+                    stream<<";";
+                }
+                if(iscomp[i]==true)
+                {
+                    stream<<"1";
+                    stream<<";";
+                }
+                else
+                {
+                    stream<<"0";
+                    stream<<";";
+                }
+                stream<<id[i];
+                stream<<";"<<endl;
+            }
+        }
+        file.close();
+
     delete ui;
 }
 
