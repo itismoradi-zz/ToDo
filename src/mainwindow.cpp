@@ -219,6 +219,60 @@ void MainWindow::on_selectbt_clicked()
 
 
 MainWindow::~MainWindow()
-{
+{            
+        QFile file("E:/avengers/todoqt/data.txt");//input your file path
+        if(file.open(QIODevice::WriteOnly | QIODevice::Text))
+         {
+            QTextStream stream(&file);
+            for (int i=0;i<tasks.length();i++)
+            {
+                stream <<tasks[i];
+                stream<<";";
+                if(fav[i]==true)
+                {
+                    stream<<"1";
+                    stream<<";";
+                }
+                else
+                {
+                    stream<<"0";
+                    stream<<";";
+                }
+                if(times[i]==0)
+                {
+                    stream<<"0";
+                    stream<<";";
+                }
+                else if(times[i]==1)
+                {
+                    stream<<"1";
+                    stream<<";";
+                }
+                if(times[i]==2)
+                {
+                    stream<<"2";
+                    stream<<";";
+                }
+                if(times[i]==3)
+                {
+                    stream<<"3";
+                    stream<<";";
+                }
+                if(iscomp[i]==true)
+                {
+                    stream<<"1";
+                    stream<<";";
+                }
+                else
+                {
+                    stream<<"0";
+                    stream<<";";
+                }
+                stream<<id[i];
+                stream<<";"<<endl;
+            }
+        }
+        file.close();
+
     delete ui;
 }
