@@ -21,10 +21,18 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->comboBox->addItem("Week");
     ui->comboBox->addItem("Day");
     
-    ui->setupUi(this);
-    QFile file("./data/tasks.data");//input your file path
+    QFile file("..\\data\\tasks.data");    //input your file path
     file.open(QIODevice::ReadOnly | QIODevice::Text);
+
+    if(!file.isOpen())
+    {
+        QMessageBox msgerr;
+        msgerr.setText("tasks.data file in data directory is not exist!");
+        msgerr.exec();
+    }
+
     QTextStream in(&file);
+
     while(!in.atEnd())
     {
         QString str_Line = in.readLine();
@@ -53,10 +61,7 @@ MainWindow::MainWindow(QWidget *parent) :
         else
             isComplete.prepend(false);
     }
-    ui->comboBox->addItem("No Time");
-    ui->comboBox->addItem("Mon");
-    ui->comboBox->addItem("Week");
-    ui->comboBox->addItem("Day");
+
     if(id.length()>0)
     {
        for(int i=0;i<id.length();i++)
@@ -68,7 +73,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     }
 
-
+    on_allbt_clicked();
 }
 
 
@@ -275,6 +280,8 @@ void MainWindow::on_Removebt_clicked()
         msgerr.setText("task removed");
         msgerr.exec();
     }
+
+    on_allbt_clicked();
 }
 
 void MainWindow::on_todaybt_clicked()
@@ -303,6 +310,8 @@ void MainWindow::on_todaybt_clicked()
         msgerr.setText("task time is day");
         msgerr.exec();
     }
+
+    on_allbt_clicked();
 }
 
 void MainWindow::on_toweekbt_clicked()
@@ -331,6 +340,8 @@ void MainWindow::on_toweekbt_clicked()
         msgerr.setText("task time is week");
         msgerr.exec();
     }
+
+    on_allbt_clicked();
 }
 
 void MainWindow::on_tomonbt_clicked()
@@ -359,6 +370,8 @@ void MainWindow::on_tomonbt_clicked()
         msgerr.setText("task time is month");
         msgerr.exec();
     }
+
+    on_allbt_clicked();
 }
 
 void MainWindow::on_tofavbt_clicked()
@@ -387,6 +400,8 @@ void MainWindow::on_tofavbt_clicked()
         msgerr.setText("task is favorite");
         msgerr.exec();
     }
+
+    on_allbt_clicked();
 }
 
 void MainWindow::on_tocompletebt_clicked()
@@ -415,15 +430,23 @@ void MainWindow::on_tocompletebt_clicked()
         msgerr.setText("task is compeleted");
         msgerr.exec();
     }
+
+    on_allbt_clicked();
 }
 
 
 MainWindow::~MainWindow()
 {
-        QFile file("E:/avengers/todoqt/data.txt");//input your file path
+        QFile file("..\\data\\tasks.data");  //input your file path
+
         if(file.open(QIODevice::WriteOnly | QIODevice::Text))
-         {
+        {
+            QMessageBox msgerr;
+            msgerr.setText("your tasks saved");
+            msgerr.exec();
+
             QTextStream stream(&file);
+
             for (int i=0;i<task.length();i++)
             {
                 stream <<task[i];
@@ -472,6 +495,7 @@ MainWindow::~MainWindow()
                 stream<<";"<<endl;
             }
         }
+
         file.close();
 
     delete ui;

@@ -22,3 +22,6 @@ HEADERS += \
 
 FORMS += \
     form/mainwindow.ui
+
+DISTFILES += \
+    data/tasks.data
