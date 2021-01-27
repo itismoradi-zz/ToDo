@@ -2,6 +2,11 @@
 #include "ui_mainwindow.h"
 #include "ui_mainwindow.h"
 #include "qmessagebox.h"
+#include <QFile>
+#include<QTextStream>
+#include <string>
+
+using namespace std;
 
 #define NOTFOUND -1
 
@@ -12,12 +17,12 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->comboBox->addItem("No Time");
-    ui->comboBox->addItem("Mon");
+    ui->comboBox->addItem("Month");
     ui->comboBox->addItem("Week");
     ui->comboBox->addItem("Day");
     
     ui->setupUi(this);
-    QFile file("E:/avengers/todoqt/data.txt");//input your file path
+    QFile file("./data/tasks.data");//input your file path
     file.open(QIODevice::ReadOnly | QIODevice::Text);
     QTextStream in(&file);
     while(!in.atEnd())
@@ -29,11 +34,11 @@ MainWindow::MainWindow(QWidget *parent) :
         QString ntimes=all[2];
         QString nid=all[4];
         QString niscomp=all[3];
-        tasks.prepend(ntask);
+        task.prepend(ntask);
         if(nfav=="1")
-            fav.prepend(true);
+            isFavorite.prepend(true);
         else
-            fav.prepend(false);
+            isFavorite.prepend(false);
         if(ntimes=="0")
             times.prepend(0);
         else if(ntimes=="1")
@@ -44,9 +49,9 @@ MainWindow::MainWindow(QWidget *parent) :
             times.prepend(3);
         id.prepend(nid.toInt());
         if(niscomp=="1")
-            iscomp.prepend(true);
+            isComplete.prepend(true);
         else
-            iscomp.prepend(false);
+            isComplete.prepend(false);
     }
     ui->comboBox->addItem("No Time");
     ui->comboBox->addItem("Mon");
@@ -56,10 +61,10 @@ MainWindow::MainWindow(QWidget *parent) :
     {
        for(int i=0;i<id.length();i++)
        {
-           if(id[i]>s)
-               s=id[i];
+           if(id[i]>firstID)
+               firstID=id[i];
        }
-       s++;
+       firstID++;
 
     }
 
@@ -234,65 +239,6 @@ void MainWindow::on_selectbt_clicked()
     }
 }
 
-
-MainWindow::~MainWindow()
-{            
-        QFile file("E:/avengers/todoqt/data.txt");//input your file path
-        if(file.open(QIODevice::WriteOnly | QIODevice::Text))
-         {
-            QTextStream stream(&file);
-            for (int i=0;i<tasks.length();i++)
-            {
-                stream <<tasks[i];
-                stream<<";";
-                if(fav[i]==true)
-                {
-                    stream<<"1";
-                    stream<<";";
-                }
-                else
-                {
-                    stream<<"0";
-                    stream<<";";
-                }
-                if(times[i]==0)
-                {
-                    stream<<"0";
-                    stream<<";";
-                }
-                else if(times[i]==1)
-                {
-                    stream<<"1";
-                    stream<<";";
-                }
-                if(times[i]==2)
-                {
-                    stream<<"2";
-                    stream<<";";
-                }
-                if(times[i]==3)
-                {
-                    stream<<"3";
-                    stream<<";";
-                }
-                if(iscomp[i]==true)
-                {
-                    stream<<"1";
-                    stream<<";";
-                }
-                else
-                {
-                    stream<<"0";
-                    stream<<";";
-                }
-                stream<<id[i];
-                stream<<";"<<endl;
-            }
-        }
-        file.close();
-
-    delete ui;
-}
 
 void MainWindow::on_Removebt_clicked()
 {
@@ -469,4 +415,64 @@ void MainWindow::on_tocompletebt_clicked()
         msgerr.setText("task is compeleted");
         msgerr.exec();
     }
+}
+
+
+MainWindow::~MainWindow()
+{
+        QFile file("E:/avengers/todoqt/data.txt");//input your file path
+        if(file.open(QIODevice::WriteOnly | QIODevice::Text))
+         {
+            QTextStream stream(&file);
+            for (int i=0;i<task.length();i++)
+            {
+                stream <<task[i];
+                stream<<";";
+                if(isFavorite[i]==true)
+                {
+                    stream<<"1";
+                    stream<<";";
+                }
+                else
+                {
+                    stream<<"0";
+                    stream<<";";
+                }
+                if(times[i]==0)
+                {
+                    stream<<"0";
+                    stream<<";";
+                }
+                else if(times[i]==1)
+                {
+                    stream<<"1";
+                    stream<<";";
+                }
+                if(times[i]==2)
+                {
+                    stream<<"2";
+                    stream<<";";
+                }
+                if(times[i]==3)
+                {
+                    stream<<"3";
+                    stream<<";";
+                }
+                if(isComplete[i]==true)
+                {
+                    stream<<"1";
+                    stream<<";";
+                }
+                else
+                {
+                    stream<<"0";
+                    stream<<";";
+                }
+                stream<<id[i];
+                stream<<";"<<endl;
+            }
+        }
+        file.close();
+
+    delete ui;
 }
